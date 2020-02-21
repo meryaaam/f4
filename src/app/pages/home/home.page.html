@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color ="warning">
+      <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-searchbar  ></ion-searchbar>
+  
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCart()" #cart>
+      <div class="cart-length">{{ cartItemCount | async }}</div>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-card>
+    <ion-slides [options]="sliderConfig">
+    
+       <ion-slide *ngFor="let p of products">
+    
+        <ion-card-title> </ion-card-title>
+      
+      <ion-card-content>
+        <img src="{{'../../../../../assets/mk/' + p.id + '.jpg'}}">
+        <ion-row class="ion-align-items-center">
+          {{ p.name }}
+          <ion-col size="4">
+            <ion-badge color="warning">
+              <b>{{ p.price | currency:'USD' }}</b>
+              </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="ion-text-right">
+            <ion-button fill="clear" (click)="addToCart(p)">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      </ion-slide>
+    
+  </ion-slides></ion-card>
+  </ion-list>
+</ion-content>
