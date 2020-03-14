@@ -29,21 +29,13 @@ export class RegisterPage {
     });
 
 }
-    next() {
-        this.signupSlider.slideNext();
-    }
-
-    prev() {
-        this.signupSlider.slidePrev();
-    }
-
     save() {
 
       this.submitAttempt = true;
 
-      if(!this.Form.valid){
+      if (!this.Form.valid){
           this.signupSlider.slideTo(0);
-      } 
+      }
       else if(!this.Form.valid){
           this.signupSlider.slideTo(1);
       }
