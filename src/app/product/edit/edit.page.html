@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="warning" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="Products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Edit product</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+   <ion-list *ngIf="currentP" >
+
+    <form>
+     
+      <ion-list>
+        <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="currentP.name"
+          name="title"
+        ></ion-input>
+        </ion-item>
+
+        <ion-item>
+        <ion-label position="floating">Price</ion-label>
+        <ion-input type="text"  [(ngModel)]="currentP.price"
+          name="price"
+        ></ion-input>
+    
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Quantity</ion-label>
+        <ion-input type="text"  [(ngModel)]="currentP.qt"
+          name="qt"
+        ></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">category</ion-label>
+        <ion-input type="text"  [(ngModel)]="currentP.cat"
+          name="cat"
+        ></ion-input>
+      </ion-item>
+
+        <ion-row>
+          <ion-col>
+        <ion-button type="submit" (click)="updateP()" color="warning">Update</ion-button>
+        <p>{{ message }}</p>
+      </ion-col>
+      <ion-col>
+        <ion-button type="submit" (click)="deleteP()" color="danger">Delete</ion-button>
+      </ion-col>
+      </ion-row>
+      </ion-list>
+      </form>
+
+  </ion-list>
+  <ion-list *ngIf="!currentP">
+    <p>Cannot access this Product...</p>
+  </ion-list>
+  </ion-card-content>
+  </ion-card>
+</ion-content>

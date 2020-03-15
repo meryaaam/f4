@@ -17,6 +17,6 @@ export class WelcomePage implements OnInit {
   }
 
   navigateToAddProductPAge() {
-    this.router.navigate(['product']);
+    this.router.navigate(['Products']);
   }
 }

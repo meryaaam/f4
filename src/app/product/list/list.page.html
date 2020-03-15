@@ -1,0 +1,53 @@
+<ion-header >
+  <ion-toolbar color="warning" >
+    <ion-title>
+      List 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+
+  <ion-list>
+
+    <ion-row >
+      <ion-col
+        *ngFor="let tutorial of products; let i = index"
+        [class.active]="i == i"
+        (click)="setActiveTProduct(tutorial, i)"
+      >
+     {{ tutorial.name }}
+      </ion-col>
+    </ion-row>
+     
+    <div *ngIf="currentP">
+   
+      <div>
+        <ion-label><strong>name:</strong></ion-label> {{ currentP.name }}
+      </div>
+      <div>
+        <ion-label><strong>price:</strong></ion-label>
+        {{ currentP.price }}
+      </div>
+      <div>
+        <ion-label><strong>Quantity:</strong></ion-label>
+        {{ currentP.qt  }}
+      </div>
+
+      <br>
+      <a routerLink="/Products/{{ currentP.id }}">
+        Edit
+      </a>
+    </div>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+    <ion-fab-button (click)="navigateToAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    
+  </ion-fab>
+  <ion-button expand="block" share="round"(click)="removeAllProducts()" color="danger" > Remove All</ion-button>
+
+  
+</ion-content>

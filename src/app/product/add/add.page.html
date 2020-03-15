@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="warning" >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="Products"></ion-back-button>
+    </ion-buttons>
+    <ion-title>add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center" >Add product</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+ 
+      <ion-list *ngIf="!submitted">
+        <ion-item >
+        <ion-label position="floating">Product Name</ion-label>
+        <ion-input type="text" [(ngModel)]="product.name" name="name"
+        ></ion-input>
+        </ion-item>
+  
+      <ion-item >
+        <ion-label position="floating"> Price</ion-label>
+        <ion-input [(ngModel)]="product.price" name="price"
+        ></ion-input>
+      </ion-item>
+  
+
+      <ion-item >
+        <ion-label position="floating"> Quantity</ion-label>
+        <ion-input [(ngModel)]="product.qt" name="price"
+        ></ion-input>
+      </ion-item>
+  
+      <ion-item >
+        <ion-label position="floating"> category</ion-label>
+        <ion-input [(ngModel)]="product.cat" name="price"
+        ></ion-input>
+      </ion-item>
+  <br>
+      <ion-button color="warning" expand="block" type="submit" (click)="saveProduct()" >Submit</ion-button>
+      </ion-list>
+  
+    <div *ngIf="submitted">
+      <h4>Create New Product</h4>
+      <ion-button (click)="newProduct()">New Product</ion-button>
+    </div>
+</ion-card-content>
+</ion-card>
+  
+</ion-content>

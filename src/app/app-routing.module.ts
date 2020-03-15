@@ -23,28 +23,20 @@ loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomePage
   {
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
-  },
-  {
-    path: 'add',
-    loadChildren: () => import('./pages/product/add/add.module').then( m => m.AddPageModule)
-  },
-  {
-    path: 'edit',
-    loadChildren: () => import('./pages/product/edit/edit.module').then( m => m.EditPageModule)
-  },
-  {
-    path: 'list',
-    loadChildren: () => import('./pages/product/list/list.module').then( m => m.ListPageModule)
   }
   ,
-  {
-    path: 'Details',
-    loadChildren: () => import('./pages/product/details/details.module').then( m => m.DetailsPageModule)
-  },
 
   {
-    path: 'product',
-    loadChildren: () => import('./pages/product/product-home/product-home.module').then( m => m.ProductHomePageModule)
+    path: 'add',
+    loadChildren: () => import('./product/add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'Products/:id',
+    loadChildren: () => import('./product/edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'Products',
+    loadChildren: () => import('./product/list/list.module').then( m => m.ListPageModule)
   }
 ];
 @NgModule({
