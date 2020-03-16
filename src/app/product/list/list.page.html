@@ -9,10 +9,10 @@
 <ion-content >
 
 
-  <ion-list>
+  <ion-list  >
 
-    <ion-row >
-      <ion-col
+    <ion-row   >
+      <ion-col 
         *ngFor="let tutorial of products; let i = index"
         [class.active]="i == i"
         (click)="setActiveTProduct(tutorial, i)"
@@ -21,7 +21,7 @@
       </ion-col>
     </ion-row>
      
-    <div *ngIf="currentP">
+    <ion-list *ngIf="currentP">
    
       <div>
         <ion-label><strong>name:</strong></ion-label> {{ currentP.name }}
@@ -39,7 +39,7 @@
       <a routerLink="/Products/{{ currentP.id }}">
         Edit
       </a>
-    </div>
+    </ion-list>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
     <ion-fab-button (click)="navigateToAdd()">

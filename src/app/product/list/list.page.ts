@@ -34,6 +34,10 @@ export class ListPage implements OnInit {
   const loading = await this.loadingController.create({
     message: 'Loading...'
   });
+  const toast = await this.toastController.create({
+    message: 'click on Product Name',
+    duration: 2000
+  });
   await loading.present();
 
   await this.db.getAll()
@@ -42,6 +46,7 @@ export class ListPage implements OnInit {
           this.products = data;
           console.log(data);
           loading.dismiss();
+          toast.present();
         },
         error => {
           console.log(error);
