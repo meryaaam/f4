@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { DBService } from '../../services/db.service';
 import { LoadingController, ToastController } from '@ionic/angular';
-
+import { category } from 'src/models/category';
 @Component({
   selector: 'app-add',
   templateUrl: './add.page.html',
   styleUrls: ['./add.page.scss'],
 })
 export class AddPage implements OnInit {
-
+category ;
   product = {
 
     name : '' ,
     price : null ,
     qt : null ,
-    cat : ''
+    category : ''
 
   } ;
 
@@ -24,7 +24,7 @@ export class AddPage implements OnInit {
     private db: DBService ,
     public loadingController: LoadingController ,
     public toastController: ToastController
-  ) { }
+  ) {  this.category = category;}
 
   ngOnInit() {
   }
@@ -44,7 +44,7 @@ export class AddPage implements OnInit {
       name: this.product.name,
       price: this.product.price,
       qt : this.product.qt,
-      cat : this.product.cat
+      cat : this.product.category
     };
 
     await this.db.create(data)
@@ -63,14 +63,13 @@ export class AddPage implements OnInit {
   }
 
   newProduct() {
-    
 
     this.submitted = false;
     this.product = {
       name: '',
       price: null,
       qt: null ,
-      cat : ''
+      category : ''
     };
   }
 }

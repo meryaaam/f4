@@ -33,6 +33,8 @@ export class CartPage implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
+
+  
   async checkout() {
     // Perfom PayPal or Stripe checkout process
     let alert = await this.alertCtrl.create({

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color ="warning">
+  <ion-toolbar color ="bg">
       <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
       <ion-searchbar  ></ion-searchbar>
@@ -10,9 +10,9 @@
 
 <ion-content>
   <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="openCart()" #cart>
+    <ion-fab-button (click)="openCart()" #cart color="c">
       <div class="cart-length">{{ cartItemCount | async }}</div>
-      <ion-icon name="cart" class="cart-icon"></ion-icon>
+      <ion-icon color="light" name="cart" class="cart-icon"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
@@ -27,15 +27,15 @@
       <ion-card-content>
         <img src="{{'../../../../../assets/mk/' + p.id + '.jpg'}}">
         <ion-row class="ion-align-items-center">
-          {{ p.name }}
+         <div class="nc">{{ p.name }} </div> 
           <ion-col size="4">
-            <ion-badge color="warning">
+            <ion-badge color="a">
               <b>{{ p.price | currency:'USD' }}</b>
               </ion-badge>
           </ion-col>
           <ion-col size="2" class="ion-text-right">
             <ion-button fill="clear" (click)="addToCart(p)">
-              <ion-icon name="add-circle-outline"></ion-icon>
+              <ion-icon color="a" name="add-circle-outline"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

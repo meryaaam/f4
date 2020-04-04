@@ -1,8 +1,11 @@
 <ion-header >
-  <ion-toolbar color="warning" >
+  <ion-toolbar color="bg" >
     <ion-title>
       List 
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -42,12 +45,12 @@
     </ion-list>
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
-    <ion-fab-button (click)="navigateToAdd()">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button (click)="navigateToAdd()" color="c">
+      <ion-icon name="add" color="b" ></ion-icon>
     </ion-fab-button>
     
   </ion-fab>
-  <ion-button expand="block" share="round"(click)="removeAllProducts()" color="danger" > Remove All</ion-button>
+  <ion-button expand="block" share="round"(click)="removeAllProducts()" color="a" > Remove All</ion-button>
 
   
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="warning" >
+  <ion-toolbar color="bg" >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="Products"></ion-back-button>
     </ion-buttons>
@@ -32,22 +32,26 @@
 
       <ion-item >
         <ion-label position="floating"> Quantity</ion-label>
-        <ion-input [(ngModel)]="product.qt" name="price"
+        <ion-input [(ngModel)]="product.qt" name="Qt"
         ></ion-input>
       </ion-item>
   
       <ion-item >
         <ion-label position="floating"> category</ion-label>
-        <ion-input [(ngModel)]="product.cat" name="price"
-        ></ion-input>
+        <ion-select [(ngModel)]="product.category">
+          <ion-select-option [value]="category.title" *ngFor="let cat of category">{{ cat.title }}</ion-select-option>
+      </ion-select>
+        
       </ion-item>
   <br>
-      <ion-button color="warning" expand="block" type="submit" (click)="saveProduct()" >Submit</ion-button>
+      <ion-button color="a" expand="block" type="submit" (click)="saveProduct()" >Submit</ion-button>
       </ion-list>
   
     <div *ngIf="submitted">
       <h4>Create New Product</h4>
-      <ion-button (click)="newProduct()">New Product</ion-button>
+
+      <br>
+      <ion-button (click)="newProduct()" color="a">New Product</ion-button>
     </div>
 </ion-card-content>
 </ion-card>

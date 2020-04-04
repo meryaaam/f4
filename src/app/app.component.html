@@ -1,22 +1,63 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="content1">
-      <ion-header>
-      
-        <ion-toolbar>
-          <ion-title>Navigate</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-       
-        <ion-list *ngFor="let pages of navigate">
-        <ion-menu-toggle auto-hide="true">
-          <ion-item [routerLink]="pages.url" routerDirection="forward">
-              <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-                 {{pages.title}} 
-          </ion-item>
-        </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-<ion-router-outlet id="content1"></ion-router-outlet>
+  <ion-split-pane>
+      <ion-menu>
+          <ion-header>
+              <ion-toolbar color="bg">
+                  <ion-title>Menu</ion-title>
+              </ion-toolbar>
+          </ion-header>
+          <ion-content>
+              <ion-list>
+                  <ion-item-divider color="a">Categories</ion-item-divider>
+                  <ion-menu-toggle>
+                      <ion-item button (click)="showCategory(cat.title)" *ngFor="let cat of categories">
+                          <ion-icon [name]="cat.icon" slot="start"></ion-icon>
+                          <div class="my-container-label">
+                              <ion-label class="my-label-title">{{cat.title}}</ion-label>
+                              <ion-label color="medium">{{cat.description}}</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+                  <ion-item-divider color="a">Mon Compte</ion-item-divider>
+                  <ion-menu-toggle>
+                      <ion-item button (click)="goTo('profile')">
+                          <ion-icon name="contact" slot="start"></ion-icon>
+                          <div class="my-container-label">
+                              <ion-label class="my-label-title">Profile</ion-label>
+                              <ion-label color="medium">Bienvenue !</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+                  <ion-menu-toggle>
+                      <ion-item button (click)="goTo('messagerie')">
+                          <ion-icon name="mail" slot="start"></ion-icon>
+                          <div class="my-container-label">
+                              <ion-label class="my-label-title">Messagerie</ion-label>
+                              <ion-label color="medium">Consultez vos messages</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+                  <ion-menu-toggle>
+                      <ion-item button (click)="goTo('cart')">
+                          <ion-icon name="cart" slot="start"></ion-icon>
+                          <div class="my-container-label">
+                              <ion-label class="my-label-title">Panier</ion-label>
+                              <ion-label color="medium">Consultez votre panier</ion-label>
+                          </div>
+                      </ion-item>
+                  </ion-menu-toggle>
+                  <ion-menu-toggle>
+                    <ion-item button (click)="goTo('settings')">
+                        <ion-icon name="settings" slot="start"></ion-icon>
+                        <div class="my-container-label">
+                            <ion-label class="my-label-title">Settings</ion-label>
+                            <ion-label color="medium">Settings</ion-label>
+                        </div>
+                    </ion-item>
+                </ion-menu-toggle>
+              </ion-list>
+          </ion-content>
+      </ion-menu>
+      <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

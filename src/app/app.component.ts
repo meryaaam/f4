@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { category } from 'src/models/category';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,15 +11,18 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
 
+  categories : any[];
   navigate: any ;
-  
+
   constructor(
     private platform: Platform,
+    private navCtrl: NavController,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
-    this.sideMenu () ;
+    this.categories = category;
+
   }
 
   initializeApp() {
@@ -28,30 +31,15 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-  sideMenu() {
-    this.navigate =
-    [
-      {
-        title : 'Home',
-        url   : '/home',
-        icon  : 'home'
-      },
-      {
-        title : 'Panier',
-        url   : '/panier',
-        icon  : 'basket-outline'
-      },
-      {
-        title : 'Notification',
-        url   : '/notification',
-        icon  : 'notifications'
-      },
-      {
-        title : 'settings',
-        url   : '/settings',
-        icon  : 'settings'
-      },
-    ];
+
+  showCategory(catTitle: string) : void {
+    this.navCtrl.navigateForward('/category/'+catTitle);
+    console.log('catTitle', catTitle);
+  }
+
+  goTo(route: string) : void {
+    console.log('route', route);
+    this.navCtrl.navigateForward(`/${route}`);
   }
 }
 

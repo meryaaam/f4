@@ -8,7 +8,7 @@ ion-fab-button {
 }
  
 .cart-length {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-a);
   position: absolute;
   top: 18px;
   left: 25px;
@@ -16,4 +16,8 @@ ion-fab-button {
   font-size: 1em;
   min-width: 25px;
   z-index: 10;
+}
+
+.nc 
+{color : var(--ion-color-b);
 }
