@@ -1,11 +1,35 @@
-
-
 <ion-content>
-  <img class="center"src='../../assets/images/x1.png ' alt="x1 " width="70%" height="auto"/>
-  
-  
-  <ion-button expand="block"  (click)="navigateToLoginPage()"> start   </ion-button>
+  <ion-slides pager="true">
+    <ion-slide>
+      <h2>Hello</h2>
+      <div class="icon-container">
+  <img class="center"src='../../assets/logo/logo.png' alt="x1 " width="70%" height="auto"/>
+</div>
+<p>The store of your dreams. You will find here what you need</p>
 
-  <ion-button expand="block"  (click)=" navigateToAddProductPAge()"> Vendez sur Notre Site  </ion-button>
 
+  
+  <ion-button expand="block" color='a' (click)="navigateToLoginPage()"> <div class="B1"> Strat Shopping  </div>   </ion-button>
+
+  <ion-button expand="block" color="c" (click)=" navigateToAddProductPAge()"> Vendez sur Notre Site  </ion-button>
+
+  </ion-slide>
+
+
+  <ion-slide>
+    <h2>Connexion</h2>
+    <div class="icon-container">
+      <ion-icon class="icon" name="log-in"></ion-icon>
+    </div>
+    <p>The store of your dreams. You will find here what you need</p>
+    <ion-button color="c" expand="block">
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>  
+        Facebook 
+    </ion-button>
+    <ion-button  expand="block" color="d">
+        <ion-icon slot="start" name="call"></ion-icon>  
+      Telephone
+    </ion-button>
+  </ion-slide>
+</ion-slides>
 </ion-content>

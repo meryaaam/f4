@@ -3,3 +3,37 @@ img.center {
     margin: auto;
     vertical-align:center;
 }
+
+ion-slide {
+    flex-direction: column;
+    height: 100vh;
+    background:	#fefaef;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 40vw;
+    border: 1px solid #4cc6dd;
+    border-radius: 20vw;
+
+    ion-icon {
+        font-size: 80px;
+        color: #ffc348;
+    }
+}
+
+ion-button {
+    width: 80vw;
+}
+
+h2, p {
+    text-align: center;
+    color: #ffc348;
+}
+.B1
+{text-align: center;
+    color: white;}
