@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -9,13 +11,17 @@ import { AuthService } from '../../services/auth.service';
 export class SettingsPage  {
 
   user = null;
-  constructor(private auth: AuthService) {}
+   constructor(
+    private auth: AuthService , 
+    private tokenStorage: TokenService ,
+    private router : Router) {}
 
-  ionViewWillEnter() {
-    this.user = this.auth.getUser();
-  }
+  // ionViewWillEnter() {
+  //   this.user = this.auth.getUser();
+  // }
 
-  flogout() {
-    this.auth.logout();
+  logout() {
+    this.tokenStorage.signOut();
+ 
   }
 }

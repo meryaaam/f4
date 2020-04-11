@@ -41,6 +41,10 @@ loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomePage
   {
     path: 'Products',
     loadChildren: () => import('./product/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 @NgModule({

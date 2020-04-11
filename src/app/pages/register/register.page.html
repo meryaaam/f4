@@ -12,6 +12,8 @@
   <ion-row>
   <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4"
   offset-xl="4">
+
+
   <ion-card>
     <ion-card-header>
       <ion-card-title class="ion-text-center">Create Account</ion-card-title>
@@ -19,65 +21,68 @@
 
     <ion-card-content>
  
- <form [formGroup]="Form">
+ <form [formGroup]="Form"  *ngIf="!isSuccessful"
+ name="form"
+ (ngSubmit)="f.form.valid && save()"
+ #f="ngForm"
+ novalidate>
 <ion-list>
     
-        <ion-item>
-            <ion-label position="floating">First Name</ion-label>
-            <ion-input formControlName="firstName" type="text" [class.invalid]="!Form.controls.firstName.valid && (Form.controls.firstName.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!Form.controls.firstName.valid  && (Form.controls.firstName.dirty || submitAttempt)">
-            <p>Please enter a valid name.</p>
-        </ion-item>
-
-        <ion-item>
-            <ion-label position="floating">Last Name</ion-label>
-            <ion-input formControlName="lastName" type="text" [class.invalid]="!Form.controls.lastName.valid && (Form.controls.age.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-        <ion-item *ngIf="!Form.controls.lastName.valid  && (Form.controls.lastName.dirty || submitAttempt)">
-          <p>Please enter a valid name.</p>
-      </ion-item>
-
+     
+       
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input formControlName="email" type="email" [class.invalid]="!Form.controls.email.valid && (Form.controls.age.dirty || submitAttempt)"></ion-input>
+          <ion-input formControlName="email" type="email" [class.invalid]="!Form.controls.email.valid && (Form.controls.age.dirty || isSignUpFailed)"></ion-input>
       </ion-item>
-      <ion-item *ngIf="!Form.controls.emailvalid  && (Form.controls.email.dirty || submitAttempt)">
+      <ion-item *ngIf="!Form.controls.emailvalid  && (Form.controls.email.dirty || isSignUpFailed)">
         <p>Please enter a valid email .</p>
     </ion-item>
     <ion-item>
         <ion-label position="floating">Username</ion-label>
-        <ion-input [class.invalid]="!Form.controls.username.valid && (Form.controls.username.dirty || submitAttempt)" formControlName="username" type="text"></ion-input>
+        <ion-input [class.invalid]="!Form.controls.username.valid && (Form.controls.username.dirty || isSignUpFailed)" formControlName="username" type="text"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="Form.controls.username.pending">
         <p>Checking username...</p>
     </ion-item>
 
-    <ion-item *ngIf="!Form.controls.username.valid && !Form.controls.username.pending && (Form.controls.username.dirty || submitAttempt)">
+    <ion-item *ngIf="!Form.controls.username.valid && !Form.controls.username.pending && (Form.controls.username.dirty || isSignUpFailed)">
         <p>Sorry, that username can not be used!</p>
     </ion-item>
 
        
 
-        <ion-item>
+        <!-- <ion-item>
             <ion-label position="floating">Age</ion-label>
-            <ion-input formControlName="age" type="number" [class.invalid]="!Form.controls.age.valid && (Form.controls.age.dirty || submitAttempt)"></ion-input>
+            <ion-input formControlName="age" type="number" [class.invalid]="!Form.controls.age.valid && (Form.controls.age.dirty || isSignUpFailed)"></ion-input>
         </ion-item>
 
-        <ion-item *ngIf="!Form.controls.age.valid  && (Form.controls.age.dirty || submitAttempt)">
+        <ion-item *ngIf="!Form.controls.age.valid  && (Form.controls.age.dirty || isSignUpFailed)">
             <p>Please enter a valid age.</p>
-        </ion-item>
+        </ion-item> -->
 
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input formControlName="password" type="text" [class.invalid]="!Form.controls.Password.valid && (Form.controls.Passworddirty || isSignUpFailed)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!Form.controls.Password.valid  && (Form.controls.Password.dirty || isSignUpFailed)">
+          <p>Please enter a valid name.</p>
+      </ion-item>
 
         
 
         
        </ion-list>
+
+       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />
+        </div>
     </form>
     <ion-button  expand="block"  color="a" (click)="save()">Create Account </ion-button>
-
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
   </ion-card-content>
 </ion-card>
 

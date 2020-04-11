@@ -24,6 +24,18 @@ import {
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
+
+
 
 
 @NgModule({
@@ -49,7 +61,16 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy } , 
+    Facebook,
+    NativeStorage,
+    PhotoViewer,
+    ImagePicker,
+    Camera,
+    FileTransfer,
+    SocialSharing,
+    Deeplinks,
+    WebView
   ],
   bootstrap: [AppComponent]
 })
