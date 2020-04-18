@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { DBService } from '../../services/db.service';
+import { ProductService } from '../../services/product.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -16,7 +16,7 @@ export class EditPage implements OnInit {
 
 
   constructor(
-    private db: DBService,
+    private db: ProductService,
     private route: ActivatedRoute,
     private router: Router ,
     public loadingController: LoadingController ,

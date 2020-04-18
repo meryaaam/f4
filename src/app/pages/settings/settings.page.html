@@ -9,10 +9,34 @@
 <ion-content>
   <ion-card *ngIf="user">
     <ion-card-content>
-      {{ user.email }} - {{ user.first_name }} {{ user.last_name }}
+      <ion-item>
+     <div class="color"  > Firstname : </div>  {{ user.firstname }} 
+        </ion-item>
+        
+        <ion-item>
+          <div class="color"  >   Lastname : </div> {{ user.lastname }}
+      </ion-item>
+
+      <ion-item>
+        <div class="color"  >  Username  :  </div> {{ user.username }} 
+        </ion-item>
+        
+      <ion-item>
+        <div class="color"  >   Email : </div>  {{ user.email }} 
+      </ion-item>
+      
+      <ion-item>
+        <div class="color"  >   Role  :    </div>
+        <div *ngFor="let role of user.roles">
+          {{ role }}
+        </div>
+         </ion-item>
+   
+
     </ion-card-content>
   </ion-card>
  
+  <ion-button expand="block" color="a"(click)="logout()">delete your account</ion-button>
   <ion-button expand="block" color="a"(click)="logout()">Logout</ion-button>
  
 </ion-content>

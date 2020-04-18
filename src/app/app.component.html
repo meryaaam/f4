@@ -16,9 +16,13 @@
                               <ion-label class="my-label-title">{{cat.title}}</ion-label>
                               <ion-label color="medium">{{cat.description}}</ion-label>
                           </div>
+                          
                       </ion-item>
-                  </ion-menu-toggle>
+                     
+                  </ion-menu-toggle  >
+                  <div  *ngIf="isLoggedIn">
                   <ion-item-divider color="a">Mon Compte</ion-item-divider>
+                 
                   <ion-menu-toggle>
                       <ion-item button (click)="goTo('profile')">
                           <ion-icon name="contact" slot="start"></ion-icon>
@@ -55,6 +59,9 @@
                         </div>
                     </ion-item>
                 </ion-menu-toggle>
+            </div>
+
+            
               </ion-list>
           </ion-content>
       </ion-menu>

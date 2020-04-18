@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { DBService } from '../../services/db.service';
+import { ProductService } from '../../services/product.service';
 import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class ListPage implements OnInit {
   name = '' ;
 
   constructor(
-    private db: DBService ,
+    private db: ProductService ,
     private router: Router ,
     private loadingController: LoadingController ,
     public toastController: ToastController

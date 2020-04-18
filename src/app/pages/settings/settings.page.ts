@@ -8,20 +8,30 @@ import { Router } from '@angular/router';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage  {
+export class SettingsPage implements OnInit  {
 
-  user = null;
+  user: any;
+
    constructor(
-    private auth: AuthService , 
-    private tokenStorage: TokenService ,
+    private auth: AuthService ,
+    private token: TokenService ,
     private router : Router) {}
 
   // ionViewWillEnter() {
   //   this.user = this.auth.getUser();
   // }
 
+
+
+
+
+  ngOnInit() {
+    this.user = this.token.getUser();
+  }
+
   logout() {
-    this.tokenStorage.signOut();
+    this.token.signOut();
+
  
   }
 }

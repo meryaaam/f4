@@ -9,7 +9,7 @@
 
 
   
-  <ion-button expand="block" color='a' (click)="navigateToLoginPage()"> <div class="B1"> Strat Shopping  </div>   </ion-button>
+  <ion-button expand="block" color='a' (click)="navigateToHomePage()"> <div class="B1"> Strat Shopping  </div>   </ion-button>
 
   <ion-button expand="block" color="c" (click)=" navigateToAddProductPAge()"> Vendez sur Notre Site  </ion-button>
 
@@ -22,9 +22,9 @@
       <ion-icon class="icon" name="log-in"></ion-icon>
     </div>
     <p>The store of your dreams. You will find here what you need</p>
-    <ion-button color="c" expand="block">
-      <ion-icon slot="start" name="logo-facebook"></ion-icon>  
-        Facebook 
+    <ion-button color="c" expand="block" (click)="navigateToLoginPage()">
+      <ion-icon slot="start" ></ion-icon>  
+        Create Account 
     </ion-button>
     <ion-button  expand="block" color="d">
         <ion-icon slot="start" name="call"></ion-icon>  

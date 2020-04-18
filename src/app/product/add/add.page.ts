@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DBService } from '../../services/db.service';
+import { ProductService } from '../../services/product.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { category } from 'src/models/category';
 @Component({
@@ -21,7 +21,7 @@ category ;
   submitted = false ;
 
   constructor(
-    private db: DBService ,
+    private db: ProductService ,
     public loadingController: LoadingController ,
     public toastController: ToastController
   ) {  this.category = category;}

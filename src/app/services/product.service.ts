@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8038/api/products';
+const baseUrl = 'http://localhost:8034/api/products/admin';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DBService {
+export class ProductService {
 
   constructor(private http: HttpClient) { }
 

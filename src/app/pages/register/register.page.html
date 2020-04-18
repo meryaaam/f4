@@ -30,13 +30,8 @@
     
      
        
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input formControlName="email" type="email" [class.invalid]="!Form.controls.email.valid && (Form.controls.age.dirty || isSignUpFailed)"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="!Form.controls.emailvalid  && (Form.controls.email.dirty || isSignUpFailed)">
-        <p>Please enter a valid email .</p>
-    </ion-item>
+ 
+
     <ion-item>
         <ion-label position="floating">Username</ion-label>
         <ion-input [class.invalid]="!Form.controls.username.valid && (Form.controls.username.dirty || isSignUpFailed)" formControlName="username" type="text"></ion-input>
@@ -49,6 +44,34 @@
     <ion-item *ngIf="!Form.controls.username.valid && !Form.controls.username.pending && (Form.controls.username.dirty || isSignUpFailed)">
         <p>Sorry, that username can not be used!</p>
     </ion-item>
+
+    
+    <ion-item>
+      <ion-label position="floating">Firstname </ion-label>
+      <ion-input [class.invalid]="!Form.controls.firstname.valid && (Form.controls.firstname.dirty || isSignUpFailed)" formControlName="firstname" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="Form.controls.firstname.pending">
+      <p>Checking Firstnam ...</p>
+  </ion-item>
+
+  <ion-item *ngIf="!Form.controls.firstname.valid && !Form.controls.firstname.pending && (Form.controls.firstname.dirty || isSignUpFailed)">
+      <p>Sorry, that FirstName can not be used!</p>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">Lastname </ion-label>
+    <ion-input [class.invalid]="!Form.controls.LastName.valid && (Form.controls.lastname.dirty || isSignUpFailed)" formControlName="lastname" type="text"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="Form.controls.lastname.pending">
+    <p>Checking lastname ...</p>
+</ion-item>
+
+<ion-item *ngIf="!Form.controls.lastname.valid && !Form.controls.lastname.pending && (Form.controls.lastname.dirty || isSignUpFailed)">
+    <p>Sorry, that Lastname can not be used!</p>
+</ion-item>
 
        
 
@@ -67,7 +90,7 @@
       </ion-item>
 
       <ion-item *ngIf="!Form.controls.Password.valid  && (Form.controls.Password.dirty || isSignUpFailed)">
-          <p>Please enter a valid name.</p>
+          <p>Please enter a valid password.</p>
       </ion-item>
 
         
@@ -79,7 +102,7 @@
         Signup failed!<br />
         </div>
     </form>
-    <ion-button  expand="block"  color="a" (click)="save()">Create Account </ion-button>
+    <ion-button  expand="block"  color="a" (click)="save()" >Create Account </ion-button>
     <div class="alert alert-success" *ngIf="isSuccessful">
       Your registration is successful!
     </div>
