@@ -22,7 +22,7 @@ spaceBetween: 4 ,
 centredSlides: true
 };
 
-
+isLoggedIn = true ;
   @ViewChild('cart', {static: false, read: ElementRef})fab: ElementRef;
   constructor(private cartService: CartService, private modalCtrl: ModalController) {}
 
@@ -48,7 +48,9 @@ centredSlides: true
       this.fab.nativeElement.classList.remove('animated', 'bounceOutLeft');
       this.animateCSS('bounceInLeft');
     });
-    modal.present();
+
+  
+    modal.present(); 
   }
 
   animateCSS(animationName, keepAnimated = false) {

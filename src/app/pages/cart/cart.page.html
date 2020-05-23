@@ -7,8 +7,8 @@
   </div>
  
   <div class="ion-padding">
- 
-    <ion-list>
+    <div *ngIf="isLoggedIn">
+    <ion-list >
       <ion-item *ngFor="let p of cart" class="ion-text-wrap">
         <ion-grid>
           <ion-row class="ion-align-items-center">
@@ -57,10 +57,19 @@
         </ion-grid>
       </ion-item>
     </ion-list>
- 
     <ion-button color="a"expand="full" (click)="checkout()">
       Checkout
     </ion-button>
+ </div>
+ <div *ngIf=" !isLoggedIn">
+
+  <img class="center"src='../../../assets/logo/card.png' alt="cart" width="45%" height="auto"/>
+   <p> There currently are no items in your shopping cart . if you already have an account, Please Sign in to view your cart items </p>
+   <ion-button  class='noactualbutton' color="a"expand="full" (click)="SingIn()" [disabled]="!isenabled">
+  Sign In
+  </ion-button>
+  </div>
+    
   </div>
  
 </ion-content>

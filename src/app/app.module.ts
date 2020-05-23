@@ -33,6 +33,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Directive, HostBinding, ElementRef } from '@angular/core' ;
 
 
 
@@ -70,7 +71,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     FileTransfer,
     SocialSharing,
     Deeplinks,
-    WebView
+    WebView 
+    //,Directive, HostBinding, ElementRef
   ],
   bootstrap: [AppComponent]
 })

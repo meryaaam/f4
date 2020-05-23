@@ -1,22 +1,34 @@
 import { Product, CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-  cart: Product[] = [];
 
   constructor(
+    public toastController: ToastController ,
+    private token: TokenService ,
+    private router: Router ,
     private cartService: CartService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController
      ) { }
+  cart: Product[] = [];
+  isLoggedIn = true ;
+  total: number ;
+  isenabled = true ;
+
   ngOnInit() {
+    this.isLoggedIn = !!this.token.getToken();
     this.cart = this.cartService.getCart();
   }
+
+
   decreaseCartItem(product) {
     this.cartService.decreaseProduct(product);
   }
@@ -33,18 +45,37 @@ export class CartPage implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
-
-  
   async checkout() {
+
+    const toast = await this.toastController.create({
+      message: ' Add product firt',
+      duration: 2000
+    });
+
+    this.total =  this.getTotal() ;
     // Perfom PayPal or Stripe checkout process
     let alert = await this.alertCtrl.create({
       header: 'Thanks for your Order!',
       message: 'We will deliver as soon as possible',
       buttons: ['OK']
     });
+    if (this.total > 0 ) {
+    this.isenabled = true;
     alert.present().then(() => {
-      this.modalCtrl.dismiss();
-    });
+   this.modalCtrl.dismiss(); }
+    );
+  } else { 
+    this.isenabled = false;
+    toast.present();
+   }
+}
+
+
+  SingIn() {
+
+   this.router.navigateByUrl('login');
+   this.modalCtrl.dismiss();
+
   }
 }
 

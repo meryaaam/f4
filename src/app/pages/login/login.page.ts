@@ -3,12 +3,16 @@ import { AuthService } from '../../services/auth.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
+import { Directive, HostBinding, ElementRef } from '@angular/core' ;
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss']
 })
+
+
 export class LoginPage implements OnInit {
 
   form: any = {};
@@ -17,7 +21,11 @@ export class LoginPage implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
+  passwordType = 'password';
+  passwordIcon = 'eye-off';
+
   constructor(
+
     public loadingController: LoadingController ,
     private auth: AuthService,
     private tokenStorage: TokenService ,
@@ -29,9 +37,12 @@ export class LoginPage implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;  }}
 
+
+
+
+
+
    async login() {
-
-
 
   const loading = await this.loadingController.create({
     message: 'Loading...'
@@ -68,10 +79,23 @@ export class LoginPage implements OnInit {
     window.location.reload();
   }
 
-  navToR() {this.router.navigateByUrl('/register'); }
+  navToR() {this.router.navigateByUrl('/register');
+  
+   }
 
   logout() {
     this.tokenStorage.signOut();
     window.location.reload();
   }
+
+
+
+
+ 
+  hideShowPassword() {
+      this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+      this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
+
 }

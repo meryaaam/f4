@@ -1,10 +1,11 @@
-export class product 
-{
-name : string ; 
-price : null ; 
-Qt : number ;
-cat : string ;
-
+export class Product {
+    id: number ;
+name: string ;
+price: null ;
+Qt: number ;
+cat: string ;
+img: string ;
+averageStar: number ;
 
 
 }

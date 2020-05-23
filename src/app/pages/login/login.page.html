@@ -19,6 +19,8 @@
         </ion-card-header>
  
         <ion-card-content>
+         
+ 
           <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate
         >
           <ion-item lines="none">
@@ -27,15 +29,24 @@
             #username="ngModel"></ion-input>
           </ion-item>
  
+
           <ion-item lines="none">
             <ion-label position="stacked">Password</ion-label>
-            <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="form.password">
+
+          
+            <ion-input [type]="passwordType" clearOnEdit="false" placeholder="Password"  name="password" [(ngModel)]="form.password">
+              <ion-icon  slot="end"  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+
             </ion-input>
           </ion-item>
+
+
+
         </form>
           <ion-button color="a" (click)="login()" expand="block">Login</ion-button>
-          <ion-button expand="block" color="c" (click)="navToR()">Register
-          </ion-button>
+          <ion-button expand="block" color="c" (click)="navToR()">Register</ion-button>
+          <!-- <br>
+          <p> New with us <a> SignIn </a> </p> -->
           <div *ngIf="isLoggedIn">
             Logged in as {{ roles }}.
             <a href class="nav-link" (click)="logout()">LogOut</a>

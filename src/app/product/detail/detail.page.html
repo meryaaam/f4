@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar  color ="bg">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ product?.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="share()">
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
+      <ion-button (click)="openCart()">
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-slides pager="true" [options]="slidesOpt">
+      <ion-slide (click)="showImage(image, product.name)" *ngFor="let image of product?.img">
+        <!-- <ion-img [src]="'http://192.168.43.73:3000/api/Containers/photos/download/'+image"></ion-img> -->
+        <img src="{{'../../../../../assets/mk/' + product.id + '.jpg'}}">
+      </ion-slide>
+    </ion-slides>
+    <ion-card-content>
+      <ion-card-title>
+        <ion-chip color="primary">
+          <ion-label>{{ product?.cat }}</ion-label>
+        </ion-chip>
+       
+        <div class="my-container-label">
+          <div class="span-container">
+            <span class="price"> {{product?.price | currency}}</span>
+            <span *ngIf="product?.averageStar >= 1">
+              <ion-icon class="iconStar" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product?.averageStar >= 2">
+              <ion-icon class="iconStar" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product?.averageStar >= 3">
+              <ion-icon class="iconStar" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product?.averageStar >= 4">
+              <ion-icon class="iconStar" name="star"></ion-icon>
+            </span>
+            <span *ngIf="product?.averageStar >= 5">
+              <ion-icon class="iconStar" name="star"></ion-icon>
+            </span>
+          </div>
+        </div>
+      </ion-card-title>
+      <p style="text-align: justify"></p>
+
+      <h3 class="title">Laissez une note</h3>
+      <div class="rating-container">
+        <!-- <rating [(ngModel)]="rate" readonly="false" size="default" (ngModelChange)="onModelChange($event)">
+        </rating> -->
+        <ion-button (click)="leaveNote()" color="c" size="small">Noter</ion-button>
+      </div>
+      
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="addToCart(product)" shape="round" color="a" expand="full">Ajouter au Panier</ion-button>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+  <p> connecter </p>
+  </ion-toolbar>
+</ion-footer>

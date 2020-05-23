@@ -1,0 +1,11 @@
+img.center {
+    display: block;
+    margin: auto;
+    vertical-align:center;
+}
+
+.noactualbutton[disabled]{
+    color: white;
+    opacity: 1;
+    background: #b3b3b3;
+}

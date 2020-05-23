@@ -1,64 +1,85 @@
-import {Component, Directive, Input, ViewChild} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AgeValidator } from '../validators/age';
-import { UsernameValidator } from '../validators/username';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { AlertController , ToastController , LoadingController} from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'register.page.html',
-  styleUrls: ['register.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
 
 
-   public Form: FormGroup;
-
-   isSuccessful = false;
-   isSignUpFailed = false;
+  form: any = {} ;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  msg = '' ;
 
   constructor(
-    public loadingController: LoadingController ,
-    public formBuilder: FormBuilder ,
-    private authService: AuthService ,
-    private alertCtrl: AlertController) {
+    private auth: AuthService ,
+    private alertCtrl: AlertController ,
+    private toast: ToastController , 
+    private router: Router ,
+    private loading : LoadingController ,
+    ) { }
 
-    this.Form = formBuilder.group({
-        firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-       // tslint:disable-next-line: max-line-length
-        email: ['', Validators.compose([Validators.minLength(10), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'), Validators.required])],
-        // age: ['', AgeValidator.isValid],
-        username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')]), UsernameValidator.checkUsername],
-        password : ['' , Validators.compose([Validators.minLength(10),Validators.required])]
-    });
-
-}
-    async save() {
-
-        const loading = await this.loadingController.create({
-            message: 'Loading...'
-          });
-        await loading.present();
-        this.authService.register(this.Form).subscribe(data => {
-            console.log(data);
-            this.isSuccessful = true;
-            this.isSignUpFailed = false;
-            loading.dismiss();
-        }, 
-        async err => {
-            const alert = await this.alertCtrl.create({
-                header: 'Login Failed',
-                message: err.error.message,
-                buttons: ['OK']
-            });
-            alert.present();
-            loading.dismiss();
-            this.isSignUpFailed = true;
-        });
-
+  ngOnInit() {
   }
 
+  async onSubmit() {
+
+
+     const loading = await this.loading.create({
+    message: 'Loading...'
+  });
+
+
+     const toast = await this.toast.create({
+      message: 'Your registration is successful!',
+      duration: 2000
+    });
+
+
+
+    //  if (this.form.email.error.required) { this.msg = 'Email is required' ; }
+    //  else {if (z) {}
+    // }
+
+
+
+     this.auth.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+        toast.present();
+        this.router.navigateByUrl('/login');
+      },
+      async err => {
+        this.msg = err.error.message;
+
+        const alert =  await this.alertCtrl.create({
+          header: 'Error',
+          message: this.msg,
+          buttons: ['ok']
+        });
+
+        alert.present() ;
+
+        this.isSignUpFailed = true;
+
+
+
+
+
+
+
+
+      }
+    );
+  }
 }
+
+

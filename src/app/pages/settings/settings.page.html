@@ -3,6 +3,9 @@
     <ion-title>
       Settings
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
  
@@ -35,8 +38,8 @@
 
     </ion-card-content>
   </ion-card>
- 
+  <div *ngIf="user">
   <ion-button expand="block" color="a"(click)="logout()">delete your account</ion-button>
   <ion-button expand="block" color="a"(click)="logout()">Logout</ion-button>
- 
+  </div>
 </ion-content>

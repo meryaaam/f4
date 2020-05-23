@@ -20,9 +20,9 @@
                       </ion-item>
                      
                   </ion-menu-toggle  >
-                  <div  *ngIf="isLoggedIn">
-                  <ion-item-divider color="a">Mon Compte</ion-item-divider>
                  
+                  <ion-item-divider color="a">Mon Compte</ion-item-divider>
+                  <div  *ngIf="isLoggedIn">
                   <ion-menu-toggle>
                       <ion-item button (click)="goTo('profile')">
                           <ion-icon name="contact" slot="start"></ion-icon>
@@ -59,6 +59,18 @@
                         </div>
                     </ion-item>
                 </ion-menu-toggle>
+                  </div>
+                <div  *ngIf=" ! isLoggedIn">
+                    <ion-menu-toggle>
+                        <ion-item button (click)="goTo('login')">
+                            <ion-icon name="person" slot="start"></ion-icon>
+                            <div class="my-container-label">
+                                <ion-label class="my-label-title">Login</ion-label>
+                           
+                            </div>
+                        </ion-item>
+                    </ion-menu-toggle>
+                
             </div>
 
             

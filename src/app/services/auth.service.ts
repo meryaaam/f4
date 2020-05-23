@@ -29,7 +29,9 @@ register(user): Observable<any> {
   return this.http.post(AUTH_API + 'signup', {
     username: user.username,
     email: user.email,
-    password: user.password
+    password: user.password ,
+    firstname : user.firstname,
+    lastname : user.lastname ,
   }, httpOptions);
 }
 }

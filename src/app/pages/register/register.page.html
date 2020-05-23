@@ -1,115 +1,94 @@
 <ion-header>
   <ion-toolbar color="bg">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
- 
 
 <ion-content>
+
   <ion-row>
-  <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4"
-  offset-xl="4">
-
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">Create Account</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
+    <ion-col size="12" size-sm="10" offset-sm="1" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4"
+    offset-xl="4">
+  
+  
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Create Account</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+  <form *ngIf="!isSuccessful"  name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
  
- <form [formGroup]="Form"  *ngIf="!isSuccessful"
- name="form"
- (ngSubmit)="f.form.valid && save()"
- #f="ngForm"
- novalidate>
-<ion-list>
-    
+
+      <ion-item>
+      <ion-label position="floating" for="username"> Username </ion-label>
+      <ion-input type="text"name="username"[(ngModel)]="form.username" require  minlength="3" maxlength="20" #username="ngModel" > </ion-input>
+    </ion-item>
+
      
-       
- 
+     
 
-    <ion-item>
-        <ion-label position="floating">Username</ion-label>
-        <ion-input [class.invalid]="!Form.controls.username.valid && (Form.controls.username.dirty || isSignUpFailed)" formControlName="username" type="text"></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="Form.controls.username.pending">
-        <p>Checking username...</p>
-    </ion-item>
-
-    <ion-item *ngIf="!Form.controls.username.valid && !Form.controls.username.pending && (Form.controls.username.dirty || isSignUpFailed)">
-        <p>Sorry, that username can not be used!</p>
-    </ion-item>
-
-    
-    <ion-item>
-      <ion-label position="floating">Firstname </ion-label>
-      <ion-input [class.invalid]="!Form.controls.firstname.valid && (Form.controls.firstname.dirty || isSignUpFailed)" formControlName="firstname" type="text"></ion-input>
-  </ion-item>
-
-  <ion-item *ngIf="Form.controls.firstname.pending">
-      <p>Checking Firstnam ...</p>
-  </ion-item>
-
-  <ion-item *ngIf="!Form.controls.firstname.valid && !Form.controls.firstname.pending && (Form.controls.firstname.dirty || isSignUpFailed)">
-      <p>Sorry, that FirstName can not be used!</p>
-  </ion-item>
-
-
-  <ion-item>
-    <ion-label position="floating">Lastname </ion-label>
-    <ion-input [class.invalid]="!Form.controls.LastName.valid && (Form.controls.lastname.dirty || isSignUpFailed)" formControlName="lastname" type="text"></ion-input>
-</ion-item>
-
-<ion-item *ngIf="Form.controls.lastname.pending">
-    <p>Checking lastname ...</p>
-</ion-item>
-
-<ion-item *ngIf="!Form.controls.lastname.valid && !Form.controls.lastname.pending && (Form.controls.lastname.dirty || isSignUpFailed)">
-    <p>Sorry, that Lastname can not be used!</p>
-</ion-item>
-
-       
-
-        <!-- <ion-item>
-            <ion-label position="floating">Age</ion-label>
-            <ion-input formControlName="age" type="number" [class.invalid]="!Form.controls.age.valid && (Form.controls.age.dirty || isSignUpFailed)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!Form.controls.age.valid  && (Form.controls.age.dirty || isSignUpFailed)">
-            <p>Please enter a valid age.</p>
-        </ion-item> -->
+    <!-- email -->
 
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input formControlName="password" type="text" [class.invalid]="!Form.controls.Password.valid && (Form.controls.Passworddirty || isSignUpFailed)"></ion-input>
+        <ion-label position="floating" for="email">Email</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="form.email" required email #email="ngModel" > </ion-input>
       </ion-item>
+        
+       
 
-      <ion-item *ngIf="!Form.controls.Password.valid  && (Form.controls.Password.dirty || isSignUpFailed)">
-          <p>Please enter a valid password.</p>
+                <!-- firstname -->
+  
+      <ion-item>
+        <ion-label position="floating" for="firstname">fistname</ion-label>
+        <ion-input type="text"name="firtname" [(ngModel)]="form.firstname" required > </ion-input>
       </ion-item>
+       
 
-        
+        <!-- lastname -->
 
-        
-       </ion-list>
+      <ion-item>
+        <ion-label position="floating" for="lastname">lastname</ion-label>
+        <ion-input type="text"  name="lastname"[(ngModel)]="form.lastname" required ></ion-input>
+      </ion-item>
+       
 
-       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />
-        </div>
-    </form>
-    <ion-button  expand="block"  color="a" (click)="save()" >Create Account </ion-button>
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
-  </ion-card-content>
+        <!-- password -->
+
+ 
+      <ion-item>
+        <ion-label position="floating" for="password">Password</ion-label>
+        <ion-input type="password"  name="password"[(ngModel)]="form.password" required minlength="6" #password="ngModel" ></ion-input>
+      </ion-item>
+       
+       
+       
+ 
+        <ion-button  expand="block"   color="a" class="btn btn-primary btn-block" (click)="onSubmit()">Sign Up</ion-button>
+       
+      <ion-item lines='none'>
+        Already have an account? <a routerLink='/login'>Sign in.</a>
+        </ion-item>
+   
+
+    
+
+  
+
+
+
+     
+</form>
+
+
+
+</ion-card-content>
 </ion-card>
 
 </ion-col>
 </ion-row>
 
-  </ion-content>
+</ion-content>

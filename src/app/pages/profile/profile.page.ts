@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 import { FileTransferObject, FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
 import { environement } from 'src/models/environement';
 import { Observable } from 'rxjs';
-import { product } from 'src/models/product';
-import { Product } from 'src/app/services/cart.service';
+import { Product } from 'src/models/product';
+
 
 @Component({
   selector: 'app-profile',

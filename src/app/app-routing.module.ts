@@ -45,6 +45,15 @@ loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomePage
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
+  },
+  
+  {
+    path: 'detail',
+    loadChildren: () => import('./product/detail/detail.module').then( m => m.DetailPageModule)
   }
 ];
 @NgModule({
