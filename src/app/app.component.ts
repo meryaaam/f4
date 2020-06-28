@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { category } from 'src/models/category';
+import { category } from 'src/app/models/category';
 import { TokenService } from './services/token.service';
 @Component({
   selector: 'app-root',

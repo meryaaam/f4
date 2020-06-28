@@ -1,29 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-const API_URL = 'http://localhost:8039/api/test/';
+const baseUrl = 'http://localhost:8034/api/admin/users';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  get(id) {
+    return this.http.get(`${baseUrl}/${id}`);
   }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+  create(data)  {
+    return this.http.post(baseUrl, data);
   }
 
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
+  // create(data) : Observable<any>  {
+  //   return this.http.post(baseUrl, data , httpOptions);
+  // }
+  update(id, data) {
+    return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  delete(id) {
+    return this.http.delete(`${baseUrl}/${id}`);
   }
+
+  deleteAll() {
+    return this.http.delete(baseUrl);
+  }
+
+  getAll() {
+    return this.http.get(baseUrl);
+  }
+
+
+
 }

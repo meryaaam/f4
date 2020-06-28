@@ -2,13 +2,14 @@
   <ion-toolbar color ="bg">
       <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-searchbar  ></ion-searchbar>
+      <ion-searchbar [(ngModel)]="name" [showCancelButton]="true"(onInput)="search(name)" ></ion-searchbar>
   
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- <div *ngIf="isLoggedIn" > -->
   <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openCart()" #cart color="c">
       <div class="cart-length">{{ cartItemCount | async }}</div>
@@ -18,30 +19,83 @@
 
   <ion-list>
     <ion-card>
-    <ion-slides [options]="sliderConfig">
+      <ion-card-header>
+        <!-- <ion-card-title class="ion-text-center">{{c.title}}</ion-card-title> -->
+        <ion-card-title class="ion-text-center"></ion-card-title>
+      </ion-card-header>
     
-       <ion-slide *ngFor="let p of products">
+    <ion-card-content>
+      <ion-slides [options]="sliderConfig">
     
-        <ion-card-title> </ion-card-title>
-      
-      <ion-card-content>
-        <img src="{{'../../../../../assets/mk/' + p.id + '.jpg'}}">
-        <ion-row class="ion-align-items-center">
-         <div class="nc">{{ p.name }} </div> 
-          <ion-col size="4">
-            <ion-badge color="a">
-              <b>{{ p.price | currency:'USD' }}</b>
-              </ion-badge>
-          </ion-col>
-          <ion-col size="2" class="ion-text-right">
-            <ion-button fill="clear" (click)="addToCart(p)">
-              <ion-icon color="a" name="add-circle-outline"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-      </ion-slide>
+        <ion-slide *ngFor="let p of products">
+         
+          <ion-img [src]="retrievedImage" ></ion-img>
+          <ion-row class="ion-align-items-center">
+            <div class="nc">{{ p.name }} </div> 
+             <ion-col size="4">
+               <ion-badge color="a">
+                 <b>{{ p.price | currency:'USD' }}</b>
+                 </ion-badge>
+             </ion-col>
+             <ion-col size="2" class="ion-text-right">
+               <ion-button fill="clear" (click)="addToCart(p)">
+                 <ion-icon color="a" name="add-circle-outline"></ion-icon>
+               </ion-button>
+             </ion-col>
+           </ion-row>
+       
+        </ion-slide>
+        
+      </ion-slides>
+    </ion-card-content>
     
-  </ion-slides></ion-card>
-  </ion-list>
-</ion-content>
+    
+    
+    </ion-card>
+        
+    </ion-list>
+  <!-- </div> -->
+
+  <!-- <div *ngIf="!isLoggedIn">
+
+  </div> -->
+
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        <!-- <ion-card-title class="ion-text-center">{{c.title}}</ion-card-title> -->
+        <ion-card-title class="ion-text-center"></ion-card-title>
+      </ion-card-header>
+    
+    <ion-card-content>
+      <ion-slides [options]="sliderConfig">
+    
+        <ion-slide *ngFor="let p of products" >
+         
+         <!-- <div *ngFor="let p of products"> -->
+          <ion-row class="ion-align-items-center">
+            <div class="nc">{{ p.name }} </div> 
+             <ion-col size="4">
+               <ion-badge color="a">
+                 <b>{{ p.price | currency:'USD' }}</b>
+                 </ion-badge>
+             </ion-col>
+             <ion-col size="2" class="ion-text-right">
+               <ion-button fill="clear" (click)="addToCart(p)">
+                 <ion-icon color="a" name="add-circle-outline"></ion-icon>
+               </ion-button>
+             </ion-col>
+           </ion-row>
+           <ion-img [src]="retrievedImage" ></ion-img>
+          <!-- </div> -->
+        </ion-slide>
+        
+      </ion-slides>
+    </ion-card-content>
+    
+    
+    
+    </ion-card>
+        
+    </ion-list>
+    </ion-content>

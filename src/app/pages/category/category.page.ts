@@ -2,10 +2,11 @@ import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { NavController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { environement } from '../../../models/environements';
+import { environement } from '../../models/environements';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from 'src/models/product';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-category',
@@ -14,62 +15,86 @@ import { Product } from 'src/models/product';
 })
 export class CategoryPage implements OnInit {
 catTitle: string;
-products: Product[];
-url: string;
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient,
-      private photoViewer: PhotoViewer, private navCtrl: NavController,
+products: any ;
+
+
+  constructor(
+      private db: ProductService ,
+      private activatedRoute: ActivatedRoute,
+      private http: HttpClient,
+      private photoViewer: PhotoViewer,
+      private navCtrl: NavController,
       private toastCtrl: ToastController) { }
 
   ngOnInit() {
-    // on récupère le paramètre 'catTitle' qui est le titre de la catégorie
     this.catTitle = this.activatedRoute.snapshot.paramMap.get('catTitle');
-    console.log('catTitle', this.catTitle);
-    this.url = `${environement.AUTH_API}/product?filter=%7B"where"%3A%20%7B"category"%3A"${this.catTitle}"%7D%7D`;
-    console.log('url', this.url);
-    // on lance la requette pour récuperer tous les product de cette catégorie
-    this.loadData(this.url)
-    .subscribe((data: Product[]) => {
-      console.log('product', data);
-      // on stocke les product dans la propriétés 'product'
-      this.products = data;
-      if (data.length === 0) {
-        // Et si il n'y a aucun article de cette catégorie, on affiche un message
-        this.presentToast("Pas d'article pour cette categorie pour le moment", 2000);
-      }
-    })
+    this.category(this.catTitle) ;
   }
 
+async category (catTitle)
+{
+  await this.db.category(catTitle)
+  .subscribe(
+    data => {
+      this.products = data;
+      console.log(data);
+      // loading.dismiss();
+
+    },
+    error => {
+      console.log(error);
+      // loading.dismiss();
+    }); }
+
+
+
+
   // Voici la methode pour charger les product
-  loadData(url: string) : Observable<Product[]> {
-    return this.http.get<Product[]>(url);
-      
-  }
+  async P() {
+
+    // const loading = await this.alert.create({
+    //   message: 'Loading...'
+    // });
+    // const toast = await this.toast.create({
+    //   message: 'click on Product Name',
+    //   duration: 2000
+    // });
+    // await loading.present();
+
+    await this.db.getAll()
+        .subscribe(
+          data => {
+            this.products = data;
+            console.log(data);
+            // loading.dismiss();
+
+          },
+          error => {
+            console.log(error);
+            // loading.dismiss();
+          });
+    }
   // la methode pour implémenter le Pull Refresh
   doRefresh($event) {
-    this.loadData(this.url)
-    .subscribe((data: Product[]) => {
-      console.log('product à partir de doRefresh', data);
-      this.products = data;
-        $event.target.complete();
-    })
+   this.category(this.catTitle) ;
   }
 
   // Voici la methode pour visionner une image avec option de partage
   showImage(imgId: string, imgTitle: string, event) {
     event.stopPropagation();
-    this.photoViewer.show(`http://192.168.8.101:3000/api/Containers/photos/download/${imgId}`, 
+    this.photoViewer.show(`http://192.168.8.101:3000/api/Containers/photos/download/${imgId}`,
     imgTitle, {share: true});
   }
 
   // Grace à cette methode, on se déplace sur la page 'product detail'.
-  showDetails(id: string) {
-    this.navCtrl.navigateForward('/product-detail/'+id)
+  showDetails(id) {
+    this.navCtrl.navigateForward('product/detail/' + id );
   }
     //  on affiche un message toast grace à cette methode
   async presentToast(message: string, duration: number) {
     const toast = await this.toastCtrl.create({
-      message: message,
-      duration: duration
+       message,
+       duration
     });
     toast.present();
   }

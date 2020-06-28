@@ -62,8 +62,10 @@ export class LoginPage implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigateByUrl('/home') ;
-        loading.dismiss();
+        if (this.roles.includes('ROLE_ADMIN')) {this.router.navigateByUrl('/admin') ;loading.dismiss();}
+         else if (this.roles.includes('ROLE_MODERATOR')) {this.router.navigateByUrl('/product/list');loading.dismiss();}
+         else if (this.roles.includes('ROLE_USER')) {this.router.navigateByUrl('/home');
+        loading.dismiss();}
     },
        err => {
         loading.dismiss();

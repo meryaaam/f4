@@ -10,6 +10,12 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { CartPageModule } from './pages/cart/cart.module';
+
+// import {PswordPageModule} from './pages/psword/psword.module' ; 
+
+
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatInputModule,
@@ -35,7 +41,7 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Directive, HostBinding, ElementRef } from '@angular/core' ;
 
-
+import {authInterceptorProviders} from './helpers/auth.interceptor';
 
 
 
@@ -47,7 +53,7 @@ import { Directive, HostBinding, ElementRef } from '@angular/core' ;
     ReactiveFormsModule,
     HttpClientModule, IonicModule.forRoot(), AppRoutingModule,
     IonicStorageModule.forRoot(),
-    CartPageModule, BrowserAnimationsModule ,
+    CartPageModule, BrowserAnimationsModule , 
     DragDropModule,
     ScrollingModule,
     MatInputModule,
@@ -60,6 +66,7 @@ import { Directive, HostBinding, ElementRef } from '@angular/core' ;
     MatCardModule,
     MatFormFieldModule],
   providers: [
+    authInterceptorProviders ,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy } , 

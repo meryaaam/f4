@@ -1,0 +1,56 @@
+
+<ion-content>
+  <div *ngIf="user" class="ion-text-end">
+    <!-- <ion-button (click)="close()" fill="clear" color="dark">
+      <ion-icon name="close" slot="start"></ion-icon>
+    </ion-button> -->
+  </div>
+  <div *ngIf="!change">
+ <div position="fixed">
+   <ion-img src='../../assets/key.png'></ion-img>
+ </div> 
+  </div>
+  <div *ngIf="change">
+    <div position="fixed">
+      <ion-img src='../../assets/key2.png'></ion-img>
+    </div> 
+     </div>
+  <ion-text color='b' >
+ <div class="v"> Reset Your  </div>  
+ <div class="v"> Password ?  </div>    
+  </ion-text>
+
+
+    <form class="container" [formGroup]="Form" (ngSubmit)="register()">
+     
+                   
+ <ion-input placeholder="Email" type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp"> </ion-input>
+ <div  *ngIf="email.touched && email.invalid" > <br>
+   <div  text-center *ngIf="email.errors.required" >  Email is required</div>
+  <div  text-center *ngIf="email.errors.email" >  Invalid Email</div>
+ </div>
+                 
+                    <ion-input placeholder="New Password" type="password" class="form-control" id="exampleInputPassword1" formControlName="password"></ion-input>
+                    <div  *ngIf="password.touched && password.invalid"> <br>
+                        <div  text-center *ngIf="password.errors.required" >Password is required</div>
+                        <div  text-center *ngIf="password.errors.minlength" >Password must contain 6 characters at least</div>
+                    </div>
+          
+                    <ion-input placeholder="Confirm Password" type="password" class="form-control" id="repeatPassword" formControlName="repassword"></ion-input>
+                    <div  text-center *ngIf="repassword.touched && repassword.invalid  "> <br>
+                    <div *ngIf="repassword.errors.required " >Confirm Password <br></div>
+                  </div>
+                    <div text-center *ngIf="repassword.valid && repassword.value != password.value" class="value"> <br>
+                        The passwords entered do not match
+                    </div>
+                 
+  
+        <div class="form-row">
+            <div class="col">
+                <ion-button type="submit" color="a" class="button2" [disabled]="Form.invalid || repassword.value != password.value">Reset Password</ion-button>
+
+            </div>
+        </div>
+    </form>
+
+</ion-content>

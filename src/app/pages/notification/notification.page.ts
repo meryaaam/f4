@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ToastController } from '@ionic/angular';
-import { Utilisateur } from 'src/models/utilisateur';
-import { Message } from 'src/models/message';
+import { Utilisateur } from 'src/app/models/utilisateur';
+import { Message } from 'src/app/models/message';
 
 @Component({
   selector: 'app-notification',

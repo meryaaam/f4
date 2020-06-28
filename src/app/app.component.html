@@ -11,10 +11,10 @@
                   <ion-item-divider color="a">Categories</ion-item-divider>
                   <ion-menu-toggle>
                       <ion-item button (click)="showCategory(cat.title)" *ngFor="let cat of categories">
-                          <ion-icon [name]="cat.icon" slot="start"></ion-icon>
+                          <!-- <ion-icon [name]="cat.icon" slot="start"></ion-icon> -->
                           <div class="my-container-label">
                               <ion-label class="my-label-title">{{cat.title}}</ion-label>
-                              <ion-label color="medium">{{cat.description}}</ion-label>
+                              <!-- <ion-label color="medium">{{cat.description}}</ion-label> -->
                           </div>
                           
                       </ion-item>
@@ -24,7 +24,7 @@
                   <ion-item-divider color="a">Mon Compte</ion-item-divider>
                   <div  *ngIf="isLoggedIn">
                   <ion-menu-toggle>
-                      <ion-item button (click)="goTo('profile')">
+                      <ion-item button (click)="goTo('feed/profile')">
                           <ion-icon name="contact" slot="start"></ion-icon>
                           <div class="my-container-label">
                               <ion-label class="my-label-title">Profile</ion-label>
@@ -33,7 +33,7 @@
                       </ion-item>
                   </ion-menu-toggle>
                   <ion-menu-toggle>
-                      <ion-item button (click)="goTo('notification')">
+                      <ion-item button (click)="goTo('feed/notification')">
                           <ion-icon name="mail" slot="start"></ion-icon>
                           <div class="my-container-label">
                               <ion-label class="my-label-title">Messagerie</ion-label>
@@ -42,7 +42,7 @@
                       </ion-item>
                   </ion-menu-toggle>
                   <ion-menu-toggle>
-                      <ion-item button (click)="goTo('panier')">
+                      <ion-item button (click)="goTo('feed/panier')">
                           <ion-icon name="cart" slot="start"></ion-icon>
                           <div class="my-container-label">
                               <ion-label class="my-label-title">Panier</ion-label>
@@ -51,7 +51,7 @@
                       </ion-item>
                   </ion-menu-toggle>
                   <ion-menu-toggle>
-                    <ion-item button (click)="goTo('settings')">
+                    <ion-item button (click)="goTo('feed/settings')">
                         <ion-icon name="settings" slot="start"></ion-icon>
                         <div class="my-container-label">
                             <ion-label class="my-label-title">Settings</ion-label>

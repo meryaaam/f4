@@ -1,15 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { NavController, ActionSheetController, ToastController, LoadingController } from '@ionic/angular';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
-import { Utilisateur } from 'src/models/utilisateur';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Component, OnInit } from '@angular/core';
-import { FileTransferObject, FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
-import { environement } from 'src/models/environement';
-import { Observable } from 'rxjs';
-import { Product } from 'src/models/product';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,11 +11,76 @@ import { Product } from 'src/models/product';
 })
 export class ProfilePage implements OnInit {
 
-  profileType: 'Profil';
-
+  user: any ;
+  id : any ;
   constructor(
- ) { }
+               private router: Router ,
+               public loadingController: LoadingController ,
+               public toastController: ToastController ,
+               private User: UserService , 
+               private token : TokenService
 
-   ngOnInit() {}
+
+
+  ) { }
+
+  ngOnInit() {
+    // this.get(this.route.snapshot.paramMap.get('id'));
+    this.id = this.token.getUser().id ;
+    this.get(this.id) ;
+    
+  }
+
+  setpage(){this.router.navigate(['/feed/settings'])}
+  async get(id) {
+    const loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+
+    await loading.present();
+
+    await this.User.get(id)
+      .subscribe(
+        data => {
+          this.user = data;
+          console.log(data);
+          loading.dismiss();
+        },
+        error => {
+          console.log(error);
+          loading.dismiss();
+        });
+
+
+
+
+
+
+
+  }
+
+
+  async save() {
+    const loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    const toast = await this.toastController.create({
+      message: 'The product was updated successfully!',
+      duration: 2000
+    });
+    await loading.present();
+
+    await this.User.update(this.user.id, this.user)
+      .subscribe(
+        response => {
+          console.log(response);
+          loading.dismiss();
+          // toast.present();
+        },
+        error => {
+          console.log(error);
+          loading.dismiss();
+        });
+  }
 
 }

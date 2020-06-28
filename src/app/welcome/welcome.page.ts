@@ -12,16 +12,16 @@ export class WelcomePage implements OnInit {
 
   ngOnInit() {
   }
-  navigateToHomePage() {
+  home() {
     this.router.navigate(['home']);
   }
 
-  navigateToLoginPage() {
+  register() {
     this.router.navigate(['register']);
   }
 
 
-  navigateToAddProductPAge() {
-    this.router.navigate(['Products']);
+  seller() {
+    this.router.navigate(['seller/register']);
   }
 }

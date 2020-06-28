@@ -1,9 +1,69 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="bg">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="setpage()">
+        <ion-icon slot="end" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <img id="profile-image" src='../../../assets/1.png'>
 
+  <ion-list *ngIf="user">
+    <ion-item-divider color="c">
+      <ion-label color="b">
+        USERNAME :  {{ user.username }} 
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label color="b" >  Firstname   </ion-label> 
+      <ion-input type="text" [(ngModel)]="user.firstname"  name="fn">
+         <ion-text > {{this.user.firstname}} </ion-text> </ion-input>
+      
+    </ion-item>
+
+    <ion-item> 
+      <ion-label  color="b"> Lastname  </ion-label>   
+     <ion-input  type="text" [(ngModel)]="user.lastname" name="ln"> 
+       {{this.user.lastname}}</ion-input> 
+   
+       
+     
+    </ion-item>
+    <ion-item>
+      <ion-label  color="b">  Email </ion-label> 
+      <ion-input > {{this.user.email}} </ion-input>
+      
+      
+    </ion-item>
+    <ion-item> 
+      <ion-label  color="b" > Phone number </ion-label> 
+      <ion-input  type="text" [(ngModel)]="user.tlf" name="tlf"> 
+        {{this.user.tlf}} </ion-input>
+
+       
+    </ion-item>
+    <ion-item> 
+      <ion-item>
+        <ion-label  color="b">Birthday</ion-label>
+        <ion-datetime [(ngModel)]="user.Birthday" name="date"displayFormat="DDDD MMM D, YYYY" min="1920" max="2007" value={{this.user.birdhay}} ></ion-datetime>
+      </ion-item>
+      
+    </ion-item>
+    
+
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+    <ion-fab-button (click)="save()" color="c">
+      <ion-icon name="save-outline" color="b" ></ion-icon>
+    </ion-fab-button>
+    
+  </ion-fab>
 </ion-content>

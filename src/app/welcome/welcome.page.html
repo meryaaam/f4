@@ -9,9 +9,9 @@
 
 
   
-  <ion-button expand="block" color='a' (click)="navigateToHomePage()"> <div class="B1"> Strat Shopping  </div>   </ion-button>
+  <ion-button expand="block" color='a' (click)="home()"> <div class="B1"> Strat Shopping  </div>   </ion-button>
 
-  <ion-button expand="block" color="c" (click)=" navigateToAddProductPAge()"> Vendez sur Notre Site  </ion-button>
+  <ion-button expand="block" color="c" (click)="seller()"> Vendez sur Notre Site  </ion-button>
 
   </ion-slide>
 
@@ -19,10 +19,11 @@
   <ion-slide>
     <h2>Connexion</h2>
     <div class="icon-container">
-      <ion-icon class="icon" name="log-in"></ion-icon>
+      <img class="center"src='../../assets/logo/logo.png' alt="Beauty" width="70%" height="auto"/>
+
     </div>
     <p>The store of your dreams. You will find here what you need</p>
-    <ion-button color="c" expand="block" (click)="navigateToLoginPage()">
+    <ion-button color="c" expand="block" (click)="register()">
       <ion-icon slot="start" ></ion-icon>  
         Create Account 
     </ion-button>

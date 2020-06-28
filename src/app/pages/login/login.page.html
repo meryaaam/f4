@@ -32,12 +32,19 @@
 
           <ion-item lines="none">
             <ion-label position="stacked">Password</ion-label>
-
-          
+                   
+                
+          <ion-row>
+            <ion-col> 
+      
             <ion-input [type]="passwordType" clearOnEdit="false" placeholder="Password"  name="password" [(ngModel)]="form.password">
-              <ion-icon  slot="end"  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
-
+         
             </ion-input>
+          </ion-col>
+            <ion-col size="2" >
+            <ion-icon  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+          </ion-col>
+          </ion-row>
           </ion-item>
 
 

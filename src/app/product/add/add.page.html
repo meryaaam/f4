@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="bg" >
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="Products"></ion-back-button>
+      <ion-back-button defaultHref="product/list"></ion-back-button>
     </ion-buttons>
     <ion-title>add</ion-title>
   </ion-toolbar>
@@ -43,6 +43,13 @@
       </ion-select>
         
       </ion-item>
+
+      <!-- <ion-item >
+        <ion-label position="floating"> Image</ion-label>
+        <ion-input name="img" [(ngModel)]="product.Img" type="text"
+        ></ion-input>
+      </ion-item> -->
+
   <br>
       <ion-button color="a" expand="block" type="submit" (click)="saveProduct()" >Submit</ion-button>
       </ion-list>

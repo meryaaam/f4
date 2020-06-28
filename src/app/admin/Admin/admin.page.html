@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="bg">
+    <ion-title> Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="a" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+ 
+</ion-header>
+
+
+<ion-content>
+  <ion-list >
+   <ion-item-divider color="bg">
+      <ion-label color="b">
+       Utilisateur
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item button (click)="addu()">
+  
+<ion-label class="a1" > Ajouter utilisateur</ion-label>
+
+
+    </ion-item>
+
+    <ion-item lines="full"   button (click)="u()"  >
+<ion-label class="a1" > List utilisateur  </ion-label>
+
+
+
+    </ion-item>
+
+    <ion-item button (click)="upu()"  >
+
+
+      <ion-label class="a1" > supprimmer tous  </ion-label>
+          </ion-item>
+
+
+
+  <!-- <ion-list class="a1"> -->
+    <ion-item-divider color="bg" lines="full">
+      <ion-label color="b">
+       Produit
+      </ion-label>
+    </ion-item-divider>
+    <ion-item  button (click)="addp()" >
+    <ion-label  class="a2"  >Ajouter produit</ion-label>
+
+  </ion-item>
+ 
+
+
+  <ion-item  button (click)="p()" >
+   
+    <ion-label  class="a2"   > List </ion-label>
+  </ion-item>
+  <ion-item button (click)="delete()"  >
+   
+    <ion-label  class="a2"  > Supprimmer tous </ion-label>
+  </ion-item>
+   
+  </ion-list>
+
+ 
+</ion-content>

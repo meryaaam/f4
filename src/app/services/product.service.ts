@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8034/api/products/admin';
+const baseUrl = 'http://localhost:8034/api/products';
+
+
+const httpOptions = {
+   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+ };
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +24,13 @@ export class ProductService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  create(data) {
+  create(data)  {
     return this.http.post(baseUrl, data);
   }
 
+  // create(data) : Observable<any>  {
+  //   return this.http.post(baseUrl, data , httpOptions);
+  // }
   update(id, data) {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
@@ -37,4 +46,20 @@ export class ProductService {
   findByTitle(title) {
     return this.http.get(`${baseUrl}?title=${title}`);
   }
+
+  addUploadData(selectedFile) {
+    return this.http.post('http://localhost:8034/products/upload', selectedFile);
+  }
+
+  findProduct(id) {
+    return this.http.get(`${baseUrl}/F/${id}`);
+  }
+
+
+  
+  category(cat) {
+    return this.http.get(`${baseUrl}/category/${cat}`);
+  }
+
+
 }
