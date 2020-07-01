@@ -14,7 +14,7 @@
 <ion-item *ngFor="let i of products ">
   <ion-thumbnail slot="start" slot="start" button (click)="detail(i.id)">
     
-    <img src="retrievedImage" />
+    <img src="{{'../../../../../assets/product/' + i.name + '.jpg'}}">
 
   </ion-thumbnail>
  

@@ -19,11 +19,6 @@ export const category = [
       description : 'description',
       icon : 'archive'
     },
-    {
-        title : 'Helath & Medicine',
-        description : 'description',
-        icon : 'archive'
-      } ,
       {
         title : 'FACE',
         description : 'description',

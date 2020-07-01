@@ -68,7 +68,7 @@ export class EditPage implements OnInit {
         });
   }
 
- async updateP() {
+ async updateProduct() {
     const loading = await this.loadingController.create({
       message: 'Loading...'
     });

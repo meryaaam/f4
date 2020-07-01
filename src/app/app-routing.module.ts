@@ -62,10 +62,7 @@ loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomePage
     loadChildren: () => import('./pages/psword/psword.module').then( m => m.PswordPageModule),
     // canActivate: [AuthGuard , RoleGuard] , data: {expectedRole: 'ROLE_ADMIN' }
   },
-  {
-    path: 'testlisteimage',
-    loadChildren: () => import('./testlisteimage/testlisteimage.module').then( m => m.TestlisteimagePageModule)
-  },
+
 
 
 
